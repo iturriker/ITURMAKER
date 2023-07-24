@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Cuenta Regresiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+    <style>
+      body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Estilos para la cuenta regresiva y la barra de progreso */
+        #countdown-container {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 15px;
+            font-family: 'Inconsolata', monospace;
+            opacity: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typeAnimationCountdown 4s forwards; /* Ajustamos el retraso a 4 segundos */
+        }
+
+        #progress-bar {
+            width: 100%;
+            max-width: 500px; /* Limita el ancho máximo de la barra de progreso */
+            height: 15px;
+            background-color: #eee;
+            margin-top: 15px;
+        }
+
+        #progress-bar .progress {
+            height: 100%;
+            background-color: green;
+        }
+
+        /* Estilos para el título "Cuenta Regresiva" */
+        h1 {
+            font-family: 'Inconsolata', monospace;
+            text-align: center;
+            opacity: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typeAnimationTitle 4s forwards;
+        }
+
+        /* Animación para mostrar las letras gradualmente en el título "Cuenta Regresiva" */
+        @keyframes typeAnimationTitle {
+            to {
+                opacity: 1;
+            }
+        }
+        /* Animación para mostrar la cuenta regresiva gradualmente */
+        @keyframes typeAnimationCountdown {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>VUELTA A ESPAÑA</h1>
+    <div id="countdown-container">
+        <div id="countdown"></div>
+    </div>
+    <div id="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <script>
+        // Establecer la fecha de inicio y finalización del contador regresivo
+        var endDate = new Date("2023-10-06T23:59:59");
+        var startDate = new Date("2023-07-13T23:59:59");
+
+        // Función para calcular y mostrar la cuenta regresiva y el progreso
+        function showCountdown() {
+            var now = new Date();
+            var timeDiff = endDate.getTime() - now.getTime();
+            var totalTime = endDate.getTime() - startDate.getTime();
+            var progress = (totalTime - timeDiff) / totalTime * 100;
+
+            if (timeDiff <= 0) {
+                // Si la cuenta regresiva ha terminado, muestra un mensaje o realiza una acción
+                document.getElementById("countdown").innerHTML = "La cuenta regresiva ha terminado.";
+                document.getElementById("progress-bar").style.display = "none";
+            } else {
+                // Calcular los días, horas, minutos y segundos restantes
+                var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                // Mostrar la cuenta regresiva en el elemento con el ID "countdown"
+                document.getElementById("countdown").innerHTML = days + " días, " + hours + " horas, " + minutes + " minutos, " + seconds + " segundos";
+
+                // Actualizar el progreso de la barra
+                document.getElementById("progress-bar").style.display = "block";
+                document.querySelector(".progress").style.width = progress + "%";
+            }
+        }
+
+        // Llamar a la función showCountdown() para mostrar la cuenta regresiva inicialmente
+        showCountdown();
+
+        // Actualizar la cuenta regresiva cada segundo
+        setInterval(showCountdown, 1000);
+    </script>
+</body>
+</html>
