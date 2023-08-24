@@ -36,6 +36,17 @@
         #progress-bar .progress {
             height: 100%;
             background-color: green;
+        
+        }
+        #percentaje-container {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 15px;
+            font-family: 'Inconsolata', monospace;
+            opacity: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typeAnimationPercentaje 4s forwards; /* Ajustamos el retraso a 4 segundos */
         }
 
         /* Estilos para el título "Cuenta Regresiva" */
@@ -54,12 +65,21 @@
                 opacity: 1;
             }
         }
+
         /* Animación para mostrar la cuenta regresiva gradualmente */
         @keyframes typeAnimationCountdown {
             to {
                 opacity: 1;
             }
         }
+
+        /* Animación para mostrar el porcentaje gradualmente */
+        @keyframes typeAnimationPercentaje {
+            to {
+                opacity: 1;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -70,11 +90,14 @@
     <div id="progress-bar">
         <div class="progress"></div>
     </div>
+    <div id="percentaje-container">
+        <div id="percentaje"></div>
+    </div>
 
     <script>
         // Establecer la fecha de inicio y finalización del contador regresivo
-        var endDate = new Date("2023-10-06T23:59:59");
-        var startDate = new Date("2023-07-13T23:59:59");
+        var startDate = new Date("2023-07-13T21:35:00");
+        var endDate = new Date("2023-10-06T08:25:00");
 
         // Función para calcular y mostrar la cuenta regresiva y el progreso
         function showCountdown() {
@@ -82,10 +105,11 @@
             var timeDiff = endDate.getTime() - now.getTime();
             var totalTime = endDate.getTime() - startDate.getTime();
             var progress = (totalTime - timeDiff) / totalTime * 100;
+            var roundedprogress = 100 - progress.toFixed(2);
 
             if (timeDiff <= 0) {
                 // Si la cuenta regresiva ha terminado, muestra un mensaje o realiza una acción
-                document.getElementById("countdown").innerHTML = "La cuenta regresiva ha terminado.";
+                document.getElementById("countdown").innerHTML = "!!!!!!!!!";
                 document.getElementById("progress-bar").style.display = "none";
             } else {
                 // Calcular los días, horas, minutos y segundos restantes
@@ -100,6 +124,9 @@
                 // Actualizar el progreso de la barra
                 document.getElementById("progress-bar").style.display = "block";
                 document.querySelector(".progress").style.width = progress + "%";
+
+                // Mostrar el porcentaje en el elemento con el ID "percentaje"
+                document.getElementById("percentaje").innerHTML = roundedprogress + "%";
             }
         }
 
