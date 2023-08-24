@@ -1,89 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mi Cuenta Regresiva</title>
+    <title>Cuenta Regresiva Voluntariado</title>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
-    <style>
-      body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        /* Estilos para la cuenta regresiva y la barra de progreso */
-        #countdown-container {
-            font-size: 24px;
-            text-align: center;
-            margin-top: 15px;
-            font-family: 'Inconsolata', monospace;
-            opacity: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typeAnimationCountdown 4s forwards; /* Ajustamos el retraso a 4 segundos */
-        }
-
-        #progress-bar {
-            width: 100%;
-            max-width: 500px; /* Limita el ancho máximo de la barra de progreso */
-            height: 15px;
-            background-color: #eee;
-            margin-top: 15px;
-        }
-
-        #progress-bar .progress {
-            height: 100%;
-            background-color: green;
-        
-        }
-        #percentaje-container {
-            font-size: 24px;
-            text-align: center;
-            margin-top: 15px;
-            font-family: 'Inconsolata', monospace;
-            opacity: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typeAnimationPercentaje 4s forwards; /* Ajustamos el retraso a 4 segundos */
-        }
-
-        /* Estilos para el título "Cuenta Regresiva" */
-        h1 {
-            font-family: 'Inconsolata', monospace;
-            text-align: center;
-            opacity: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typeAnimationTitle 4s forwards;
-        }
-
-        /* Animación para mostrar las letras gradualmente en el título "Cuenta Regresiva" */
-        @keyframes typeAnimationTitle {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Animación para mostrar la cuenta regresiva gradualmente */
-        @keyframes typeAnimationCountdown {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Animación para mostrar el porcentaje gradualmente */
-        @keyframes typeAnimationPercentaje {
-            to {
-                opacity: 1;
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="tittle-styles.css">  
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="container-styles.css">
+    <link rel="stylesheet" href="animations.css">
 </head>
+
 <body>
-    <h1>VUELTA A ESPAÑA</h1>
+
+    <h1>¡VUELTA A ESPAÑA!</h1>
     <div id="countdown-container">
         <div id="countdown"></div>
     </div>
@@ -93,48 +21,11 @@
     <div id="percentaje-container">
         <div id="percentaje"></div>
     </div>
+    <div id="data-container">
+        <div id="data"></div>
+    </div>
 
-    <script>
-        // Establecer la fecha de inicio y finalización del contador regresivo
-        var startDate = new Date("2023-07-13T21:35:00");
-        var endDate = new Date("2023-10-06T08:25:00");
+    <script src="countdown-script.js"></script>
 
-        // Función para calcular y mostrar la cuenta regresiva y el progreso
-        function showCountdown() {
-            var now = new Date();
-            var timeDiff = endDate.getTime() - now.getTime();
-            var totalTime = endDate.getTime() - startDate.getTime();
-            var progress = (totalTime - timeDiff) / totalTime * 100;
-            var roundedprogress = 100 - progress.toFixed(2);
-
-            if (timeDiff <= 0) {
-                // Si la cuenta regresiva ha terminado, muestra un mensaje o realiza una acción
-                document.getElementById("countdown").innerHTML = "!!!!!!!!!";
-                document.getElementById("progress-bar").style.display = "none";
-            } else {
-                // Calcular los días, horas, minutos y segundos restantes
-                var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-                // Mostrar la cuenta regresiva en el elemento con el ID "countdown"
-                document.getElementById("countdown").innerHTML = days + " días, " + hours + " horas, " + minutes + " minutos, " + seconds + " segundos";
-
-                // Actualizar el progreso de la barra
-                document.getElementById("progress-bar").style.display = "block";
-                document.querySelector(".progress").style.width = progress + "%";
-
-                // Mostrar el porcentaje en el elemento con el ID "percentaje"
-                document.getElementById("percentaje").innerHTML = roundedprogress + "%";
-            }
-        }
-
-        // Llamar a la función showCountdown() para mostrar la cuenta regresiva inicialmente
-        showCountdown();
-
-        // Actualizar la cuenta regresiva cada segundo
-        setInterval(showCountdown, 1000);
-    </script>
 </body>
 </html>

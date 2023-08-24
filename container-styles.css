@@ -1,0 +1,56 @@
+/* Estilos específicos de los containers */
+
+#data-container {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    border: 3px solid #5431f1;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+    font-family: 'Inconsolata', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInAnimation 4s forwards;
+}
+
+#countdown-container {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 15px;
+    font-family: 'Inconsolata', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInAnimation 4s forwards;
+}
+
+#progress-bar {
+    width: 100%;
+    max-width: 500px;
+    height: 15px;
+    background-color: #eee;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fadeInAnimation 4s forwards;
+}
+
+#progress-bar .progress {
+    height: 100%;
+    background-color: green;
+    opacity: 0;
+    animation: fadeInAnimation 4s forwards;
+}
+
+#percentaje-container {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 15px;
+    font-family: 'Inconsolata', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInAnimation 4s forwards;
+}
