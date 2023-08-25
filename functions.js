@@ -1,8 +1,6 @@
 // Establecer la fecha de inicio y finalización del contador regresivo
 var startDate = new Date("2023-07-13T21:35:00");
 var endDate = new Date("2023-10-06T08:25:00");
-var formattedstartDate = startDate.getDate() + "/" + (startDate.getMonth() + 1) + "/" + startDate.getFullYear();
-var formattedendDate = endDate.getDate() + "/" + (endDate.getMonth() + 1) + "/" + endDate.getFullYear();
 
 // Función para calcular y mostrar la cuenta regresiva y el progreso
 function showCountdown() {
@@ -32,14 +30,36 @@ function showCountdown() {
 
         // Mostrar el porcentaje en el elemento con el ID "percentaje"
         document.getElementById("percentaje").innerHTML = roundedprogress + "%" + " del total";
-
-        // Mostrar el porcentaje en el elemento con el ID "percentaje"
-        document.getElementById("data").innerHTML = "Fecha de inicio del viaje: " + formattedstartDate + "<br>Fecha de fin del viaje: " + formattedendDate;
-
     }
 }
 
-// Llamar a la función showCountdown() para mostrar la cuenta regresiva inicialmente
+function showDates(){
+    var formattedstartDate = startDate.getDate() + "/" + (startDate.getMonth() + 1) + "/" + startDate.getFullYear();
+    var formattedendDate = endDate.getDate() + "/" + (endDate.getMonth() + 1) + "/" + endDate.getFullYear();
+
+    // Mostrar el porcentaje en el elemento con el ID "percentaje"
+    document.getElementById("data").innerHTML = "Fecha de inicio del viaje: " + formattedstartDate + "<br>Fecha de fin del viaje: " + formattedendDate;
+}
+
+function showWeekends(){
+    var now = new Date();
+    var weekendsCount = 0;
+
+    while (now <= endDate) {
+        var weekenddays = now.getDay(); // 0 (Domingo) a 6 (Sábado)
+        if (weekenddays === 6) {
+            weekendsCount++;
+        }
+        now.setDate(now.getDate() + 1);
+    }
+
+    // Mostrar el Nº de fines de semana"
+    document.getElementById("weekends").innerHTML = weekendsCount + " fines de semana restantes";
+}
+
+// Llamar a las funciones
+showDates();
+showWeekends();
 showCountdown();
 
 // Actualizar la cuenta regresiva cada segundo
