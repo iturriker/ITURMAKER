@@ -1,6 +1,0 @@
-/* Definir una única animación de desvanecimiento */
-@keyframes fadeInAnimation {
-    to {
-        opacity: 1;
-    }
-}

@@ -1,9 +1,0 @@
-/* Estilos para el título "¡VUELTA A ESPAÑA!" */
-h1 {
-    font-family: 'Inconsolata', monospace;
-    text-align: center;
-    opacity: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    animation: fadeInAnimation 4s forwards;
-}
